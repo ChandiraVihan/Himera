@@ -1,0 +1,20 @@
+RT-64 telescope build report
+Blender: 5.2.2 LTS
+Output: C:\Users\USER\Downloads\RT64_Blender_Source_Package\RT64
+Reflector diameter: 64.000 m (Unreal equivalent 6400 cm)
+Reflector focal length: 23.680 m
+Calculated parabola bowl depth: 10.811 m
+Nominal secondary diameter: 6 m
+Elevation pivot height: 23.0 m
+Geometry vertices (joined skeletal mesh): 56032
+Geometry triangles (estimated): 96648
+Tracking loop: 1-1201 at 30fps (40 seconds); az +/-12 degrees; elevation rest 50 to 53 deg
+Azimuth test: 1-1201; +/-45 deg
+FBX: axis_forward -Y, axis_up Z, apply_unit_scale True, add_leaf_bones False, animation baked step 1
+Important: Autodesk FBX / Unreal Unit import should use Blender metres -> UE centimetres. Verify 6400 cm width in Unreal.
+Reference uncertainty: tower height, support details, secondary curvature and exact bearing geometry are artistic approximations.
+Materials: Blender PBR nodes; FBX material color/roughness transfer is version-dependent. Rebuild enhanced weathering in UE materials.
+Textures: no baked PBR textures; basic UV channels generated.
+Collision: UCX_RT64_Foundation_00 in scene but NOT in skeletal FBXs; import separately or use Unreal physics asset simplified collision.
+LOD: none produced; use UE skeletal mesh LOD tool with review of truss preservation.
+Validation: geometric script assertions passed; physical import to Unreal and rendered visual inspection must be done by user.
