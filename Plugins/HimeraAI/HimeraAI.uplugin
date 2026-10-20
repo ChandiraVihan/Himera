@@ -1,0 +1,20 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "0.1.0",
+  "FriendlyName": "HimeraAI",
+  "Description": "Runtime bridge between the HIMERA C++ agent core (GOAP, Hollow belief, D* Lite, Exposure Director) and Unreal Blueprints.",
+  "Category": "Gameplay",
+  "CreatedBy": "HIMERA Systems Engineer",
+  "EnabledByDefault": false,
+  "CanContainContent": false,
+  "IsBetaVersion": true,
+  "Installed": false,
+  "Modules": [
+    {
+      "Name": "HimeraAI",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ]
+}
