@@ -79,8 +79,8 @@ The core stays buildable with the standalone CMake project, so the AI team can k
 
 ## 4. Decision timing
 
-- Tactical brains (Security, Hollow, Trooper): start at **5 Hz** (every 0.2 s) using a
-  component timer, not `Tick`. Allowed range while tuning: 5–10 Hz.
+- Tactical brains (Security, Hollow, Trooper): start at **5 Hz** (every 0.2 s) from a
+  timer (Blueprint *Set Timer by Event*), not `Tick`. The components have ticking turned off. Allowed range while tuning: 5–10 Hz.
 - Event-driven replanning on `DoorStateChanged`, `HazardStateChanged`, `PlayerSeen`,
   `PlayerLost`, `GunshotHeard`, `MoveFinished` and `AttackFinished`.
 - Director: evaluated every **1 s**, and on `ExposureChanged`.

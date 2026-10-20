@@ -110,7 +110,7 @@ Hollow `selectSearchCell` -> `Search`. D* path -> `FollowRoute`. Director choice
 | `InvalidInput` | Bounds violated, cell outside grid, bad state | Log, fix the wiring; command is `NoAction` |
 | `TargetDestroyed` | Target actor no longer valid | Drop the target, wait for new perception |
 | `PlannerTimedOut` | Update exceeded time budget | Keep previous decision; retry next tick |
-| `NoSafeEvent` | Director: nothing allowed except `Quiet` | Do nothing |
+| `NoSafeEvent` | Director chose `Quiet` (nothing to dispatch); `Command` is `NoAction` | Do nothing |
 
 ### Result codes reported by the executor (`EHimeraActionResult`)
 
