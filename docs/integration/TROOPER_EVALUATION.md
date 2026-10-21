@@ -67,8 +67,9 @@ ctest --test-dir build --output-on-failure
 | Moving start | The pawn walks the route while a door closes; each step matches fresh A* |
 | Unreachable destination | Sealed goal, goal blocked later, goal outside grid (see note below) |
 | Same-cost ties | Valid path, same answer every run, exactly one of two equal routes |
+| LV_AI_Test layout | The 12 x 8 level map in `LV_AI_TEST_SETUP.md`: cost 11 open, 13 with the door closed, 13 / 12 with the spill at risk 5 / 1, no route with both corridors closed |
 
-All 46 checks pass. The `VendoredCoreDriftCheck` test is **skipped** unless the environment
+All 51 checks pass. The `VendoredCoreDriftCheck` test is **skipped** unless the environment
 variable `HIMERA_AI_REPO` points to a checkout of the AI repo (then it runs
 `Tools/sync_core.py --check`; verified once against commit `d55704d`).
 

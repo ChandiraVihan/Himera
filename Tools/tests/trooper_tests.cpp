@@ -178,6 +178,36 @@ static void testSameCostTies() {
     CHECK(usesCell(a, DOOR_A) != usesCell(a, DOOR_B), "uses exactly one of the two equal routes");
 }
 
+// The LV_AI_Test layout from docs/integration/LV_AI_TEST_SETUP.md (12 x 8 grid, door + hazard on the top corridor).
+static Grid makeLevelMap() {
+    Grid g(12, 8);
+    for (int x = 0; x < 12; ++x) { g.setBlocked({x, 0}, true); g.setBlocked({x, 7}, true); }
+    for (int y = 0; y < 8; ++y) { g.setBlocked({0, y}, true); g.setBlocked({11, y}, true); }
+    for (int x = 4; x <= 7; ++x) for (int y = 2; y <= 5; ++y) g.setBlocked({x, y}, true);
+    return g;
+}
+static void testLevelLayout() {
+    std::puts("LV_AI_Test layout numbers used in the setup guide");
+    const Point s{2, 3}, t{9, 3}, door{5, 1}, spill{6, 1}, doorB{5, 6};
+    DStarLiteAgent d(makeLevelMap(), s, t);
+    auto path = d.findPath();
+    CHECK(near(validatePath(d.grid(), path, s, t), 11.0) && usesCell(path, door), "open: cost 11 through the top corridor");
+    d.updateCell(door, true);
+    path = d.findPath();
+    CHECK(near(validatePath(d.grid(), path, s, t), 13.0) && usesCell(path, doorB), "door closed: cost 13 through the bottom corridor");
+    d.updateCell(door, false);
+    d.updateCell(spill, false, 5.0);
+    path = d.findPath();
+    CHECK(near(validatePath(d.grid(), path, s, t), 13.0) && !usesCell(path, spill), "spill risk 5: route flips to the bottom, cost 13");
+    d.updateCell(spill, false, 1.0);
+    path = d.findPath();
+    CHECK(near(validatePath(d.grid(), path, s, t), 12.0) && usesCell(path, spill), "spill risk 1: stays on top, cost 12");
+    d.updateCell(spill, false, 0.0);
+    d.updateCell(door, true);
+    d.updateCell(doorB, true);
+    CHECK(d.findPath().empty(), "both corridors closed: no route");
+}
+
 int main() {
     std::setvbuf(stdout, nullptr, _IONBF, 0);
     testBaseline();
@@ -188,6 +218,7 @@ int main() {
     testMovingStart();
     testUnreachableDestination();
     testSameCostTies();
+    testLevelLayout();
     std::printf("\n%d checks, %d failed\n", checks, failures);
     return failures == 0 ? 0 : 1;
 }
