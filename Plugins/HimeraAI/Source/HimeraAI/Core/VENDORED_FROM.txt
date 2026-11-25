@@ -1,0 +1,3 @@
+repo: HIMERA-Autonomous-AI
+branch: feature/v0.4-ai-evaluation
+commit: d55704d894cbaac20389b23bba39fe52cc90524a
