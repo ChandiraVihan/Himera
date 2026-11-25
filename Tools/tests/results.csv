@@ -1,0 +1,5 @@
+scenario,runs,reachable,path_valid,cost_equal_to_astar,reachability_disagree,dstar_expanded_mean,astar_expanded_mean,dstar_us_mean,dstar_us_sd,astar_us_mean,astar_us_sd
+"first plan (D* from scratch vs A*)",200,200,200,200,0,832.735,464.9,556.14,143.558,68.9101,46.9249
+"1 route cell blocked",200,196,196,196,0,28.199,466.883,34.4499,84.354,73.5252,26.3229
+"10 random cell changes",200,199,199,199,0,32.598,466.99,54.6181,104.823,86.9934,29.5078
+"start moved 5 steps",200,200,200,200,0,0,434.59,10.2273,7.64722,79.1039,31.6241
